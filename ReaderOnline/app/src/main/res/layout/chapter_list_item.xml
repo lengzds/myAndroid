@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/book_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="45dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/chapter_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/book_current"
+        android:text="第一张 暗黑三等奖按实际"
+        android:textSize="15dp" />
+
+</LinearLayout>
