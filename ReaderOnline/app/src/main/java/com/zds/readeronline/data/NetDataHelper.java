@@ -3,8 +3,7 @@ package com.zds.readeronline.data;
 import android.util.Log;
 
 
-import com.zds.readeronline.data.Book;
-import com.zds.readeronline.data.HtmlWorker;
+import com.zds.readeronline.database.Book;
 
 import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
@@ -24,9 +23,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import javax.security.auth.callback.Callback;
 
 /**
  * Created by 76933 on 2017/12/24.
@@ -68,7 +64,7 @@ public class NetDataHelper {
      */
     public String HtmlAnalysis(String in) throws ParserException {
         Book mBook = new Book();
-        mBook.setUrl("https://www.miaobige.com/read/18992/");
+        mBook.setBookURl("https://www.miaobige.com/read/18992/");
 //        getBook(in, mBook);
 //        getBookList(in, mBook);
 //        checkUrl(mBook);
@@ -79,7 +75,7 @@ public class NetDataHelper {
 //            Log.e("list", entry.getKey() + " " + entry.getValue());
 
 
-//        String content = getContent(mBook.getUrl().replace(".html", "") + mBook.getChapterList().get("第七章第一堂课"));
+//        String content = getContent(mBook.getBookURl().replace(".html", "") + mBook.getChapterList().get("第七章第一堂课"));
 //        Log.e("con", content);
 //        }
         return "";
@@ -100,18 +96,19 @@ public class NetDataHelper {
             NodeList nodesChild = node.getChildren();
 
             Node[] all = nodesChild.toNodeArray();
-            mBook.setName(all[1].toPlainTextString());
+            mBook.setBookName(all[1].toPlainTextString());
+            String desc="";
             for (int i = 2; i < all.length; i++) {
                 String s = all[i].toPlainTextString();
 //            Log.d("mes", s);
                 if (s.contains("分类"))
-                    mBook.setFenlei(all[++i].toPlainTextString());
+                    desc+="分类"+all[++i].toPlainTextString();
                 else if (s.contains("作者"))
-                    mBook.setZuozhe(all[++i].toPlainTextString());
+                    desc+="作者"+all[++i].toPlainTextString();
                 else if (s.contains("字数"))
-                    mBook.setZishu(all[++i].toPlainTextString());
+                    desc+="字数"+all[++i].toPlainTextString();
                 else if (s.contains("更新时间"))
-                    mBook.setGengxin(all[++i].toPlainTextString());
+                    desc+="更新时间"+all[++i].toPlainTextString();
             }
             Log.e("book message", mBook.toString());
         } catch (ParserException e) {

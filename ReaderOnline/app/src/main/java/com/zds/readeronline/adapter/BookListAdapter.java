@@ -3,7 +3,6 @@ package com.zds.readeronline.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +48,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
 //                Log.e("zds", "jump to book : " + bookName);
                 Intent intent = new Intent(mContext, ChapterActivity.class);
                 intent.putExtra("name", bookName);
-                intent.putExtra("url", mPresenter.getBook(bookName).getUrl());
+                intent.putExtra("url", mPresenter.getBook(bookName).getBookURl());
                 mContext.startActivity(intent);
             }
         });

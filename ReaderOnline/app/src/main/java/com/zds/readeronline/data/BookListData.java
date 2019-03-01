@@ -1,8 +1,9 @@
 package com.zds.readeronline.data;
 
+import com.zds.readeronline.database.Book;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 /**

@@ -1,6 +1,6 @@
 package com.zds.readeronline.model;
 
-import com.zds.readeronline.data.Book;
+import com.zds.readeronline.database.Book;
 import com.zds.readeronline.data.BookListData;
 import com.zds.readeronline.data.HtmlWorker;
 import com.zds.readeronline.data.NetReceiveCallback;
@@ -32,21 +32,21 @@ public class BookDataModel {
         } else {
             book = new Book();
             try {
-                book.setUrl(SEARCHPATH + URLEncoder.encode(name, "gb2312"));
+                book.setBookURl(SEARCHPATH + URLEncoder.encode(name, "gb2312"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             mData.addBook(name, book);
         }
         if (book != null) {
-            searchBook(name, book.getUrl());
+            searchBook(name, book.getBookURl());
         }
     }
 
     public void refreshAllBook() {
         for (String name : mData.getBookNameList()) {
             Book book = mData.getBook(name);
-            searchBook(name, book.getUrl());
+            searchBook(name, book.getBookURl());
         }
     }
 
@@ -59,7 +59,7 @@ public class BookDataModel {
     }
 
     public String getDescription(String name) {
-        return mData.getBook(name).getdescription();
+        return mData.getBook(name).getBookDes();
     }
 
     /**
@@ -68,12 +68,12 @@ public class BookDataModel {
     public void addBook(String name) {
         Book book = new Book();
         try {
-            book.setUrl(SEARCHPATH + URLEncoder.encode(name, "gb2312"));
+            book.setBookURl(SEARCHPATH + URLEncoder.encode(name, "gb2312"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         mData.addBook(name, book);
-        searchBook(name, book.getUrl());
+        searchBook(name, book.getBookURl());
     }
 
     public void searchBook(final String name, String url) {

@@ -1,6 +1,6 @@
 package com.zds.readeronline.presenter;
 
-import com.zds.readeronline.data.Book;
+import com.zds.readeronline.database.Book;
 import com.zds.readeronline.model.BookDataModel;
 import com.zds.readeronline.view.MainView;
 
